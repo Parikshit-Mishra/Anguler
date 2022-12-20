@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="card mt-5" style="align-items: center;">
+    <h1>Student DashBorad</h1>
+  </div>
+
+  <div class="card mt-5" style="padding: 20px;">
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <div class="form-group">
+        <label for="name">Student Name :</label>
+        <input type="text" #name (ngModel)="name" name="name" id="name" class="form-control"
+          placeholder="Student address">
+      </div>
+      <div class="form-group">
+        <label for="name">Student Address :</label>
+        <input type="text" #address (ngModel)="address" name="address" id="address" class="form-control"
+          placeholder="Student Address">
+      </div>
+      <div class="form-group">
+        <label for="name">Student Persentage :</label>
+        <input type="text" #percentage (ngModel)="percentage" name="percentage" id="percentage" class="form-control"
+          placeholder="Student percentage">
+      </div>
+      <div class="card mt-4">
+        <input type="Submit" value="Register" class="btn btn-primary w-100">
+      </div>
+    </form>
+  </div>
+  <div class="mt-5">
+    <form>
+      <table class="table table-bordered">
+        <thead class="thead">
+          <tr>
+            <th>Roll Number</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Percentage</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <tr *ngFor="let student of studentDetails">
+            <td> {{student.rollNumber}} </td>
+            <td> {{student.name}} </td>
+            <td> {{student.address}} </td>
+            <td> {{student.percentage}} </td>
+            <td> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(student)">Edit</button> </td>
+            <td> <button type="button" class="btn btn-danger" (click)="deleteStudent(student)">Delete</button> </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Student</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #updateForm="ngForm" (ngSubmit)="updateStudent()">
+        <!--div class="form-group">
+          <label for="name">Student RollNumber:</label>
+          <input type="text" disabled #rollNumber (ngModel)="studentToupdate.rollNumber" name="rollNumber" id="rollNumber" class="form-control"
+            placeholder="Student roll number">
+        </div-->
+        <div class="form-group">
+          <label for="name">Student Name :</label>
+          <input type="text" #name [(ngModel)]="studentToupdate.name" name="name" id="name" class="form-control"
+            placeholder="Student address">
+        </div>
+        <div class="form-group">
+          <label for="name">Student Address :</label>
+          <input type="text" #address [(ngModel)]="studentToupdate.address" name="address" id="address"
+            class="form-control" placeholder="Student name">
+        </div>
+        <div class="form-group">
+          <label for="name">Student Persentage :</label>
+          <input type="text" #percentage [(ngModel)]="studentToupdate.percentage" name="percentage" id="percentage"
+            class="form-control" placeholder="Student percentage">
+        </div>
+        <div class="card mt-4">
+          <input type="Submit" value="Update" class="btn btn-primary w-100">
+        </div>
+      </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
